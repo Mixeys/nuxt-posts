@@ -2,8 +2,10 @@ export default defineNuxtPlugin({
 	name: 'fetch',
 	parallel: true,
 	setup() {
+		const config = useRuntimeConfig()
+
 		const appFetch = $fetch.create({
-			baseURL: 'https://jsonplaceholder.typicode.com',
+			baseURL: config.public.apiBaseUrl,
 			onRequest({ options }) {
 				options.headers.append('Accept', 'application/json')
 			},
